@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="pyspider all出错 一堆代码，最后有一行 SyntaxError: invalid syntax">
+<meta name="description" content="最近国庆比较闲，正好群里有些事情要统计当天的发言人，于是写了个脚本来实现">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pyspider all出错">
-<meta property="og:url" content="http://yoursite.com/2019/07/03/pyspider all问题/index.html">
+<meta property="og:title" content="用python统计QQ群发言人">
+<meta property="og:url" content="http://yoursite.com/2019/10/02/用python统计QQ群发言人/index.html">
 <meta property="og:site_name" content="Leiqie&#39;s bolg">
-<meta property="og:description" content="pyspider all出错 一堆代码，最后有一行 SyntaxError: invalid syntax">
+<meta property="og:description" content="最近国庆比较闲，正好群里有些事情要统计当天的发言人，于是写了个脚本来实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T09:15:18.466Z">
+<meta property="og:updated_time" content="2019-10-02T03:26:40.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pyspider all出错">
-<meta name="twitter:description" content="pyspider all出错 一堆代码，最后有一行 SyntaxError: invalid syntax">
+<meta name="twitter:title" content="用python统计QQ群发言人">
+<meta name="twitter:description" content="最近国庆比较闲，正好群里有些事情要统计当天的发言人，于是写了个脚本来实现">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/03/pyspider all问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/02/用python统计QQ群发言人/"/>
 
 
 
 
 
-  <title>pyspider all出错 | Leiqie's bolg</title>
+  <title>用python统计QQ群发言人 | Leiqie's bolg</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/pyspider all问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/02/用python统计QQ群发言人/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="leiqie">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pyspider all出错</h1>
+          <h1 class="post-title" itemprop="name headline">用python统计QQ群发言人</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T17:12:31+08:00">
-                2019-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-02T11:00:00+08:00">
+                2019-10-02
               </time>
             
 
@@ -300,16 +300,17 @@
       
 
       
-        <p>pyspider all出错 一堆代码，最后有一行 SyntaxError: invalid syntax</p>
+        <p>最近国庆比较闲，正好群里有些事情要统计当天的发言人，于是写了个脚本来实现</p>
 <a id="more"></a>
-<p>解决办法：<br>进入Python37\Lib\site-packages\pyspider<br>打开 run.app, fetcher/tornado_fetcher.py, 和 webui/app.py 。 将其中的 async 替换为其他值（如 async1 ）。</p>
-<p>改完之后输入 pyspider all 还可能出现错误，最后提示 :</p>
-<ul>
-<li>Deprecated option ‘domaincontroller’: use ‘http_authenticator.domain_controller’ instead.</li>
-</ul>
-<p>解决办法：<br>进入 Python37\Lib\site-packages\pyspider\webui， 打开 webdav.py 文件，将低209行替换为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;http_authenticator&apos;:&#123;</span><br><span class="line">        &apos;HTTPAuthenticator&apos;:NeedAuthController(app),</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-<p>解决！</p>
+<h3 id="导出QQ聊天记录"><a href="#导出QQ聊天记录" class="headerlink" title="导出QQ聊天记录"></a>导出QQ聊天记录</h3><p>这就不说明了，不会的点 <a href="https://kf.qq.com/" target="_blank" rel="noopener">https://kf.qq.com/</a> ，记得导出为txt</p>
+<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;1.txt&apos;,encoding= &apos;utf-8&apos;) as f:  #打开QQ导出的消息记录（格式为txt）</span><br><span class="line">    contents = f.read()         #读取内容</span><br></pre></td></tr></table></figure>
+<p>读取时记得要设置编码格式为utf-8!</p>
+<h3 id="提取其中的发言人"><a href="#提取其中的发言人" class="headerlink" title="提取其中的发言人"></a>提取其中的发言人</h3><p>我用的是正则表达式来提取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rule = re.compile(&apos;2019-10-01.*?\d\s(.*)\(&apos;)  #写正则表达式</span><br><span class="line">results = re.findall(rule, contents)   #筛选</span><br></pre></td></tr></table></figure></p>
+<h3 id="判断和写入"><a href="#判断和写入" class="headerlink" title="判断和写入"></a>判断和写入</h3><p>由于很多人发言人数都超过一条，所以需要进行判断，名称相同的纸写入一次。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">b = []         #创建一个空的列表用来判断名称是否重复</span><br><span class="line">i = 1                               #创建一个i用来排序</span><br><span class="line">for result in results:</span><br><span class="line">    f = open(&apos;result.txt&apos;,&apos;a+&apos;, encoding = &apos;utf-8&apos;)        #打开要写入的文件</span><br><span class="line">    a = &apos;%s&apos;%(result)                                   #将字符串格式化，方便与列表中元素比较</span><br><span class="line">    if a not in b:                                                  #判断名称是否重复，不重复就写入文件和列表</span><br><span class="line">        i = str(i)</span><br><span class="line">        f.write(&apos;\n&apos; + i +str(result))                  #写入名称和排序</span><br><span class="line">        b.append(result)</span><br><span class="line">        i = int(i)</span><br><span class="line">        i = i + 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>由于用的是正则表达式提取发言人，Python 的 re 库提供了整个正则表达式的实现，利用这个库，可以在 Python 中使用正则表达式。所以要在开头加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br></pre></td></tr></table></figure>
+<p>源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">with open(&apos;1.txt&apos;,encoding= &apos;utf-8&apos;) as f:  #打开QQ导出的消息记录（格式为txt）</span><br><span class="line">    contents = f.read()         #读取内容</span><br><span class="line"></span><br><span class="line">    rule = re.compile(&apos;2019-10-01.*?\d\s(.*)\(&apos;)  #写正则表达式</span><br><span class="line">    results = re.findall(rule, contents)   #筛选</span><br><span class="line"></span><br><span class="line">    b = []         #创建一个空的列表用来判断名称是否重复</span><br><span class="line">    i = 1                               #创建一个i用来排序</span><br><span class="line">    for result in results:</span><br><span class="line">        f = open(&apos;result.txt&apos;,&apos;a+&apos;, encoding = &apos;utf-8&apos;)        #打开要写入的文件</span><br><span class="line">        a = &apos;%s&apos;%(result)                                   #将字符串格式化，方便与列表中元素比较</span><br><span class="line">        if a not in b:                                                  #判断名称是否重复，不重复就写入文件和列表</span><br><span class="line">            i = str(i)</span><br><span class="line">            f.write(&apos;\n&apos; + i +str(result))                  #写入名称和排序</span><br><span class="line">            b.append(result)</span><br><span class="line">            i = int(i)</span><br><span class="line">            i = i + 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="思考与不足"><a href="#思考与不足" class="headerlink" title="思考与不足"></a>思考与不足</h3><p>目前它还不是很完善，如果在提取的聊天记录时间段内有人更改了自己在群内的显示名称，这个脚本会将两个名称都记录下来而将一个人记为两个人，所以统计完成后还需自行去群里确认。<br>也可以再将群里所有人的名称导出来与结果进行比较。后续可能会再改进。QAQ~</p>
 
       
     </div>
@@ -340,8 +341,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/22/hexo+github搭建私人博客/" rel="next" title="hexo+github搭建私人博客">
-                <i class="fa fa-chevron-left"></i> hexo+github搭建私人博客
+              <a href="/2019/07/03/pyspider all问题/" rel="next" title="pyspider all出错">
+                <i class="fa fa-chevron-left"></i> pyspider all出错
               </a>
             
           </div>
@@ -349,10 +350,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/02/用python统计QQ群发言人/" rel="prev" title="用python统计QQ群发言人">
-                用python统计QQ群发言人 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -404,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +466,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#导出QQ聊天记录"><span class="nav-number">1.</span> <span class="nav-text">导出QQ聊天记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取文件"><span class="nav-number">2.</span> <span class="nav-text">读取文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取其中的发言人"><span class="nav-number">3.</span> <span class="nav-text">提取其中的发言人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断和写入"><span class="nav-number">4.</span> <span class="nav-text">判断和写入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考与不足"><span class="nav-number">6.</span> <span class="nav-text">思考与不足</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
