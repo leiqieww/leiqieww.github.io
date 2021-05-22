@@ -647,7 +647,7 @@ div.form_remark_holder{
 
 /*设置宽度自适应*/
 table{
-	width: 50%;
+	width: 100%!important;
 }
 div.infoplus_view{
 	padding:0px!important;
